@@ -6,6 +6,17 @@ import firebase from 'firebase'
 // Required for side-effects
 require("firebase/firestore");
 
+
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://real-time-chat-database.firebaseio.com"
+});
+
+
 var config = {
     apiKey: "AIzaSyCy3IwLp7tPoRjiZi3B5UxfQu_YJWBwwRs",
     authDomain: "real-time-chat-database.firebaseapp.com",
@@ -19,10 +30,6 @@ var config = {
 var db = firebase.firestore();
 
 window.db = db;
-
-db.settings({
-	timestampsInSnapshots: true;
-})
 
 Vue.config.productionTip = false
 

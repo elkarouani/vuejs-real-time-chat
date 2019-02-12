@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "firebase": "^5.8.2",
+    "firebase-admin": "^7.0.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

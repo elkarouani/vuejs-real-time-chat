@@ -138,7 +138,7 @@
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
+              <input @keyup.enter="saveMessage" v-model="message" type="text" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -151,7 +151,22 @@
 
 <script>
 export default {
-  components: {
+  data() {
+    return {
+      message: null
+    }
+  },
+  
+  methods:{
+    saveMessage(){
+      db.collection('chat').add({
+        message: this.message,
+      }).then((docRef)=>{
+        console.log("Document written with ID: ", docRef.id);
+      }).catch((error)=>{
+        console.log('Error adding document : ', error);
+      });
+    }
   }
 }
 </script>
