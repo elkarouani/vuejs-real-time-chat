@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import firebase from 'firebase'
+// Required for side-effects
+require("firebase/firestore");
 
 var config = {
     apiKey: "AIzaSyCy3IwLp7tPoRjiZi3B5UxfQu_YJWBwwRs",
@@ -13,6 +16,13 @@ var config = {
  };
  firebase.initializeApp(config);
 
+var db = firebase.firestore();
+
+window.db = db;
+
+db.settings({
+	timestampsInSnapshots: true;
+})
 
 Vue.config.productionTip = false
 
