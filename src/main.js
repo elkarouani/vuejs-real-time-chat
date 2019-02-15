@@ -6,30 +6,23 @@ import firebase from 'firebase'
 // Required for side-effects
 require("firebase/firestore");
 
-
-var admin = require("firebase-admin");
-
-var serviceAccount = require("path/to/serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://real-time-chat-database.firebaseio.com"
-});
-
-
 var config = {
-    apiKey: "AIzaSyCy3IwLp7tPoRjiZi3B5UxfQu_YJWBwwRs",
-    authDomain: "real-time-chat-database.firebaseapp.com",
-    databaseURL: "https://real-time-chat-database.firebaseio.com",
-    projectId: "real-time-chat-database",
-    storageBucket: "real-time-chat-database.appspot.com",
-    messagingSenderId: "545291923833"
- };
- firebase.initializeApp(config);
+    apiKey: "AIzaSyB3MmyUjbPZ53cFfKHeAAS_ff4DGe25Rjs",
+    authDomain: "real-time-chat-database-6000e.firebaseapp.com",
+    databaseURL: "https://real-time-chat-database-6000e.firebaseio.com",
+    projectId: "real-time-chat-database-6000e",
+    storageBucket: "real-time-chat-database-6000e.appspot.com",
+    messagingSenderId: "209234053567"
+  };
+firebase.initializeApp(config);
 
 var db = firebase.firestore();
 
 window.db = db;
+
+db.settings({
+	timestampsInSnapshots: true
+})
 
 Vue.config.productionTip = false
 
