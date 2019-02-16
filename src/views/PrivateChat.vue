@@ -161,11 +161,28 @@ export default {
     saveMessage(){
       db.collection('chat').add({
         message: this.message,
+        messages: [],
       }).then((docRef)=>{
         console.log("Document written with ID: ", docRef.id);
       }).catch((error)=>{
         console.log('Error adding document : ', error);
       });
+      this.message = null;
+    }, 
+    
+    fetchMessages() {
+      db.collection('chat').get().then((querySnapshot)=>{
+        let allMessages = [];
+        querySnapshot.forEach(doc=>{
+          allMessages.push(doc.data());
+        });
+
+        this.messages = allMessages;
+      })
+    },
+
+    created() {
+      this.fetchMessages();
     }
   }
 }
