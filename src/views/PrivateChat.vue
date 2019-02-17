@@ -93,7 +93,6 @@
         	<div class="mesgs">
           	<div class="msg_history">
             	<div v-for="message in messages" class="incoming_msg">
-              	<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
               	<div class="received_msg">
                 	<div class="received_withd_msg">
                   	<p>{{message.message}}</p>
@@ -129,6 +128,7 @@ export default {
     saveMessage(){
       db.collection('chat').add({
         message: this.message,
+        createdAt: new Date()
       }).then((docRef)=>{
         console.log("Document written with ID: ", docRef.id);
       }).catch((error)=>{
@@ -138,7 +138,7 @@ export default {
     }, 
     
     fetchMessages() {
-      db.collection('chat').get().then((querySnapshot)=>{
+      db.collection('chat').orderBy('createdAt').get().then((querySnapshot)=>{
         let allMessages = [];
         querySnapshot.forEach(doc=>{
           allMessages.push(doc.data());
