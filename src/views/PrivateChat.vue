@@ -96,7 +96,7 @@
               	<div class="received_msg">
                 	<div class="received_withd_msg">
                   	<p>{{message.message}}</p>
-                  	<span class="time_date"> 11:01 AM    |    June 9</span>
+                  	<span class="time_date">{{ message.author }}</span>
                   </div>
               	</div>
             	</div>
