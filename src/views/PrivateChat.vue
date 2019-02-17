@@ -116,11 +116,14 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+
 export default {
   data() {
     return {
       message: null,
-      messages: []
+      messages: [],
+      authUser: {}
     }
   },
   
@@ -128,6 +131,7 @@ export default {
     saveMessage(){
       db.collection('chat').add({
         message: this.message,
+        author: this.authUser.displayName,
         createdAt: new Date()
       }).then((docRef)=>{
         console.log("Document written with ID: ", docRef.id);
@@ -149,7 +153,27 @@ export default {
   },
 
   created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){
+        this.authUser = user;
+      } else {
+        this.authUser = {};
+      }
+    })
+
     this.fetchMessages();
+  },
+
+  beforeRouteEnter(to, from, next) {
+    next(vm=>{
+      firebase.auth().onAuthStateChanged(user => {
+        if(user){
+          next();
+        } else {
+          vm.$router.push('/login');
+        }
+      })
+    })
   }
 }
 </script>

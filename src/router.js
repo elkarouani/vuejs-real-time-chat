@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import PrivateChat from './views/PrivateChat.vue'
-import Login from './views/Login.vue'
+import PrivateChat from './views/PrivateChat'
+import Login from './views/Login'
 
 Vue.use(Router)
 
