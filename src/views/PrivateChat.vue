@@ -93,7 +93,7 @@
         	<div class="mesgs">
           	<div class="msg_history">
             	<div v-for="message in messages" class="incoming_msg">
-              	<div class="received_msg">
+              	<div :class="[message.author===authUser.displayName?'sent_msg':'received_msg']">
                 	<div class="received_withd_msg">
                   	<p>{{message.message}}</p>
                   	<span class="time_date">{{ message.author }}</span>
